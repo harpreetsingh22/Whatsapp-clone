@@ -56,7 +56,7 @@
 
 
 
-const Search=()=>{
+const Search=({setText})=>{
     const classes=useStyles() ;
 return (
 <Box className={classes.component}>
@@ -73,6 +73,7 @@ return (
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
+              onChange={(e)=>setText(e.target.value)}
             />
           </Box>
 </Box>

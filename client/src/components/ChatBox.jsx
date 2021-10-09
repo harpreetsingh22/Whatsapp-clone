@@ -1,5 +1,9 @@
 import { Dialog,withStyles,makeStyles,Box} from "@material-ui/core";
 import Menu from "./menu/Menu"   ; 
+import Chat from "./chat/Chat"  ;
+import { useContext } from "react";
+import { UserContext } from "../context/UserProvider";
+import EmptyChat from "./chat/EmptyChat";
 
  const useStyles=makeStyles(
    { component: {
@@ -11,7 +15,11 @@ import Menu from "./menu/Menu"   ;
     }  ,
 
     rightComponent:{
-        borderLeft:'1px solid rgba(0,0,0,0.14)'
+        borderLeft:'1px solid rgba(0,0,0,0.14)' ,
+        width: '70%' ,
+        minWidth:300 ,
+        height:'100%'
+
 
     }
 
@@ -51,6 +59,7 @@ const style={
 
 const ChatBox=({classes})=>{
      const classname=useStyles() ;
+     const {person}=useContext(UserContext)  ;
     return (
       <Dialog
       open={true}
@@ -67,7 +76,9 @@ const ChatBox=({classes})=>{
 
 
               <Box className={classname.rightComponent}>
-              hey!!!!!!!!!!!
+              {
+                  Object.keys(person).length?<Chat/>:<EmptyChat/>
+              }
               </Box>
             
 

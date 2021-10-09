@@ -2,6 +2,7 @@ import { Dialog,withStyles,makeStyles,Box,Typography,ListItem,List } from "@mate
 import {GoogleLogin} from 'react-google-login' ;
 import {useContext} from 'react'  ;
 import { AccountContext } from "../../context/AccountProvider";
+import { addUser } from "../../service/api";
 
 
 
@@ -54,6 +55,7 @@ list:{
 
 
 
+
 const style={
     DialogPaper:{
         height:'95%' ,
@@ -73,11 +75,13 @@ const style={
 const Login=({classes})=>{
     const classname=useStyles() ;
     const clientId='60066314329-8veoibp3t5j6lpfdmqa1dnfje8ouuj05.apps.googleusercontent.com' ;
-    const {account,setAccount}=useContext(AccountContext) ;
+    const {setAccount}=useContext(AccountContext) ;
      
-   const onLoginSuccess=(res)=>{
+   const onLoginSuccess=async(res)=>{
        console.log("login successfully :",res.profileObj)  ;
       setAccount(res.profileObj)  ;
+      await addUser(res.profileObj)  ;
+    
       
    }
 

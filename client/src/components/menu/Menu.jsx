@@ -1,15 +1,19 @@
 
 import Header from './Header'
 import Search from './Seacrh';
-
+import Conversations from './Conversations';
+import { useState } from 'react';
 
 
 const Menu=()=>{
+  const [text,setText]=useState('')  ;
 
 return (
 <>
   <Header/>
-  <Search/>
+  <Search setText={setText}/>
+  <Conversations text={text}/>
+
 </>
 
 )
