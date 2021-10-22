@@ -27,7 +27,7 @@ return (
 
     <Box>
          <ChatHeader/>
-         <Messages  conversation={conversation}/>
+         <Messages  conversation={conversation} person={person}/>
          
     </Box>
 )

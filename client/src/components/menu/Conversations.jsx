@@ -30,7 +30,7 @@ const Conversations = ({ text }) => {
     const classes = useStyles();
     const [users, setUsers] = useState([]);
     
-     const {account}=useContext(AccountContext) ;
+     const {account,socket,setActiveUsers}=useContext(AccountContext) ;
 
      useEffect(() => {
       const fetchData = async () => {
@@ -39,7 +39,16 @@ const Conversations = ({ text }) => {
           setUsers(fiteredData);
       }
       fetchData();
-  }, [text]);
+  }, [text]); 
+
+
+    useEffect(()=>{
+       socket.current.emit('addUser',account.email) 
+       socket.current.on('getUsers',users=>{
+           setActiveUsers(users)
+       })
+    },[account])
+
 
     
 

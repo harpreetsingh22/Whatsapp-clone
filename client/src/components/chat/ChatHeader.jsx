@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { UserContext } from "../../context/UserProvider";
 import {Box,Typography,makeStyles} from "@material-ui/core"  ;
 import { Search, MoreVert } from '@material-ui/icons';
+import { AccountContext } from "../../context/AccountProvider";
+
 
 const useStyles=makeStyles({ 
     header: {
@@ -47,13 +49,15 @@ const ChatHeader=()=>{
    const { person} =useContext(UserContext) ;
     const classes=useStyles()  ;
 
+     const {activeUsers}=useContext(AccountContext) ;
+
    return (
 
      <Box className={classes.header}>
         <img src={person.imageUrl} alt="cant find" className={classes.dp}/>
         <Box>
             <Typography className={classes.name}>{person.name}</Typography>
-            <Typography className={classes.status}>Online</Typography>
+            <Typography className={classes.status}>{activeUsers?.find(user=>user.userId===person.email)?'Online':'Offline'}</Typography>
         </Box>
         <Box className={classes.rightContainer}>
          <Search/>
