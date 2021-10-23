@@ -5,6 +5,9 @@ export const AccountContext=createContext(null)  ;
 
 const AccountProvider=({children})=>{
      const [account,setAccount]=useState() ;
+    
+    
+
      const socket=useRef()     ;
 
       const [activeUsers,setActiveUsers]=useState([])  ;
@@ -24,7 +27,7 @@ const AccountProvider=({children})=>{
     return(
       
      <AccountContext.Provider value={{
-       account,setAccount ,socket ,setActiveUsers ,activeUsers ,newMessageFlag ,setNewMessageFlag
+       account,setAccount ,socket ,setActiveUsers ,activeUsers ,newMessageFlag ,setNewMessageFlag 
 
       } }  >
          {children}

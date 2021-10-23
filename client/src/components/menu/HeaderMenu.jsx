@@ -50,6 +50,7 @@ const HeaderMenu=()=>{
    
 const onLogoutSuccess=()=>{
    setAccount('')  ;
+   window.location.reload(); 
 }
 
 const toggleDrawer=()=>{
